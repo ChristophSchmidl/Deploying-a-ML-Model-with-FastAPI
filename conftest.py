@@ -5,6 +5,9 @@ from sklearn.model_selection import train_test_split
 from src.ml.data import process_data
 import os
 
+current_dir = os.path.dirname(os.path.realpath(__file__))
+
+
 ############################################
 #              pytest fixtures
 ############################################
@@ -15,7 +18,7 @@ def test_data():
     Prepare data for machine learning model.
     """
 
-    filepath = os.path.join("src", "data", 'census_clean.csv') 
+    filepath = os.path.join(current_dir, "src", "data", 'census_clean.csv') 
     df = pd.read_csv(filepath)
     train, _ = train_test_split(df, test_size=0.20)
 
