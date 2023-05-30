@@ -15,7 +15,7 @@ def test_data():
     Prepare data for machine learning model.
     """
 
-    filepath = os.path.join(os.getcwd(), "data", 'census_clean.csv') 
+    filepath = os.path.join(os.getcwd(), "src", "data", 'census_clean.csv') 
     df = pd.read_csv(filepath)
     train, _ = train_test_split(df, test_size=0.20)
 
