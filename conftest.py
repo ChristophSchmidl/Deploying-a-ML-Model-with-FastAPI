@@ -45,7 +45,7 @@ def api_data_lowsalary():
     data_dict = {
         "age": 39,
         "workclass": "State-gov",
-        "fnlwgt": 77516,
+        "fnlgt": 77516,
         "education": "Bachelors",
         "education-num" : 13,
         "marital-status" : "Never-married",
@@ -67,7 +67,7 @@ def api_data_highsalary():
     return {
         "age": 52,
         "workclass": "Self-emp-inc",
-        "fnlwgt": 209642,
+        "fnlgt": 209642,
         "education": "HS-grad",
         "education-num" : 9,
         "marital-status" : "Married-civ-spouse",
