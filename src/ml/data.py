@@ -1,6 +1,7 @@
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-
+from ml.model import compute_model_metrics
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None
@@ -68,3 +69,39 @@ def process_data(
 
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
+
+
+def slice_data(data, fixed_var, target_data, preds):
+    """
+    Computes precision, recall, and F-beta score for a given target variable and model predictions, sliced by a 
+    specified fixed variable.
+
+    Args:
+        data (pandas.DataFrame): The input dataset containing the fixed and target variables.
+        fixed_var (str): The name of the fixed variable to slice the data by.
+        target_data (numpy.array): The true target values.
+        preds (numpy.array): The predicted target values.
+
+    Returns:
+        pandas.DataFrame: A dataframe containing the fixed variable, class, precision, recall, and F-beta score for
+        each slice of the data.
+    """
+     
+    df_temp = pd.DataFrame(columns=['fixed_var','class','precision', 'recall', 'fbeta'])
+
+   
+    for cls in data[fixed_var].unique():
+
+        slice_mask = data[fixed_var]==cls
+
+        target_data_slice = target_data[slice_mask]
+        preds_slice = preds[slice_mask]
+        
+        precision, recall, fbeta = compute_model_metrics(target_data_slice, preds_slice)
+        #print(precision, recall, fbeta)
+        
+        new_row = pd.Series({'fixed_var': fixed_var, 'class': cls, 'precision':precision,'recall':recall,'fbeta':fbeta})
+
+        df_temp = pd.concat([df_temp, new_row.to_frame().T], ignore_index=True)
+
+    return df_temp
