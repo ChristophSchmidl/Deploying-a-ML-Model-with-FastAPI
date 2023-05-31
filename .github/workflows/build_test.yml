@@ -42,7 +42,7 @@ jobs:
   deploy:
     name: Deploy
     needs: [build]
-    runs-on: ubnutu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to production
