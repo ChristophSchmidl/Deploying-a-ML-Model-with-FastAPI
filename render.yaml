@@ -10,7 +10,3 @@ services:
   - key: ENVIRONMENT
     value: production
   healthCheckPath: /
-  routes:
-  - type: rewrite
-    source: /.*
-    destination: /
