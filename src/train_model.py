@@ -11,11 +11,11 @@ import pandas as pd
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
-if not os.path.exists(os.path.join(os.getcwd(), "logs")):    
-    os.makedirs(os.path.join(os.getcwd(), "logs"))
+if not os.path.exists(os.path.join(current_dir, "logs")):    
+    os.makedirs(os.path.join(current_dir, "logs"))
 
 logging.basicConfig(
-        filename='./logs/application.log',
+        filename='src/logs/application.log',
         level=logging.INFO,
         filemode='a', # w =  overwrite, a = append
         format='%(asctime)s %(levelname)-8s %(filename)s:%(lineno)d %(message)s',

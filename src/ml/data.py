@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-from ml.model import compute_model_metrics
+from .model import compute_model_metrics
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None
